@@ -1,13 +1,14 @@
 'use client';
 
 import { FC } from 'react';
-import { Nav, StyledLink } from './AppNav.styled';
+import { StyledLink } from './AppNav.styled';
+import { HStack } from '@/shared/ui';
 
 export const AppNav: FC = () => {
   return (
-    <Nav>
+    <HStack as='nav' gap={15} wrap='wrap'>
       <StyledLink href='/home'>Главная</StyledLink>
       <StyledLink href='/profile'>Профиль</StyledLink>
-    </Nav>
+    </HStack>
   );
 };

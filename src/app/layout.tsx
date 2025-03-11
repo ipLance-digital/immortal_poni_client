@@ -1,9 +1,10 @@
+import { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
-import './globals.css';
 import { StoreProvider } from '@/app/providers';
 import { AppNav } from '@/widgets/app-nav';
-import { PropsWithChildren } from 'react';
 import { StyledComponentsRegistry } from './registry';
+
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'IPLance',
@@ -13,11 +14,20 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <html lang='en'>
-      <body style={{ margin: 10 }}>
+      <body>
         <StyledComponentsRegistry>
           <StoreProvider>
             <AppNav />
-            <main>{children}</main>
+            <main
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100%',
+              }}
+            >
+              {children}
+            </main>
           </StoreProvider>
         </StyledComponentsRegistry>
       </body>
