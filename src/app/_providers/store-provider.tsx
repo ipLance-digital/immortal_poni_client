@@ -1,8 +1,8 @@
 'use client';
 
 import { createContext, ReactNode } from 'react';
-import { store, RootStore } from '@/shared/store';
 import { Instance } from 'mobx-state-tree';
+import { store, RootStore } from '@/shared/store';
 
 export const RootStoreContext = createContext<Instance<
   typeof RootStore

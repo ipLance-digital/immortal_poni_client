@@ -1,12 +1,8 @@
-'use client';
-
-import { FC } from 'react';
-
-export const HomeWidget: FC = () => {
+export default function HomePage() {
   return (
-    <div className='home-widget'>
+    <div className='container'>
       <h1>Главная страница</h1>
       <p>Добро пожаловать в IPLance</p>
     </div>
   );
-};
+}

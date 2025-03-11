@@ -12,8 +12,10 @@
 
 html,
 body {
+  position: relative;
   max-width: 100vw;
-  overflow-x: hidden;
+  height: 100dvh;
+  overflow: visible;
 }
 
 body {
@@ -39,4 +41,11 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+.container {
+  padding-inline: 16px;
+  margin: 0 auto;
+  max-width: 1170px;
+  width: 100%;
 }

@@ -1,4 +1,4 @@
-import { RootStoreContext } from '@/app/providers/store-provider/store-provider';
+import { RootStoreContext } from '@/app/_providers/store-provider';
 import { useContext } from 'react';
 
 export const useStore = () => {

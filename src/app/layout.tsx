@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 import type { Metadata } from 'next';
-import { StoreProvider } from '@/app/providers';
 import { AppNav } from '@/widgets/app-nav';
+import { AppProvider } from './_providers/app-provider';
 import { StyledComponentsRegistry } from './registry';
 
 import './globals.css';
@@ -16,19 +16,10 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
     <html lang='en'>
       <body>
         <StyledComponentsRegistry>
-          <StoreProvider>
+          <AppProvider>
             <AppNav />
-            <main
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100%',
-              }}
-            >
-              {children}
-            </main>
-          </StoreProvider>
+            <main>{children}</main>
+          </AppProvider>
         </StyledComponentsRegistry>
       </body>
     </html>
