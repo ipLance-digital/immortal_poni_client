@@ -1,3 +1,9 @@
+import { SignInForm } from '@/features/auth/sign-in-form';
+
 export default function SignIn() {
-  return <div>SignIn</div>;
+  return (
+    <main className='container'>
+      <SignInForm />
+    </main>
+  );
 }

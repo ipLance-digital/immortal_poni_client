@@ -14,6 +14,7 @@ export const UserStore = types
       try {
         self.status.loadingState();
         const response = yield Auth.authMe();
+        self.id = response.id;
         self.isAuth = true;
         self.status.successState();
 
@@ -34,6 +35,7 @@ export const UserStore = types
     }) {
       try {
         const response = yield Auth.login({ username, password });
+        self.id = response.id;
         self.isAuth = true;
 
         return response;

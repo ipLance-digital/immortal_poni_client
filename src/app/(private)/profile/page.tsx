@@ -1,12 +1,7 @@
-export default function ProfilePage({
-  params: { id },
-}: {
-  params: { id: string };
-}) {
+export default function ProfilePage() {
   return (
     <div className='container'>
       <h1>Профиль пользователя</h1>
-      <p>{id}</p>
     </div>
   );
 }
