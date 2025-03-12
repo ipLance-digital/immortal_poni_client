@@ -23,7 +23,7 @@ export const AuthAPI = {
     return ApiRequest('auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: body,
+      body: JSON.stringify(body),
     });
   },
   // logout: async () => {
