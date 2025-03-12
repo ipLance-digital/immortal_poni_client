@@ -1,8 +1,11 @@
-export default function HomePage() {
+'use client';
+
+import Link from 'next/link';
+
+export default function Home() {
   return (
-    <div className='container'>
-      <h1>Главная страница</h1>
-      <p>Добро пожаловать в IPLance</p>
+    <div>
+      <Link href={'/profile'}>Профиль</Link>
     </div>
   );
 }
