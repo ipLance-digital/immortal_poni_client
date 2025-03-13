@@ -1,6 +1,6 @@
 'use client';
 
-import { useUser } from '@/entities/auth/use-user';
+import { useUser } from '@/features/auth/actions/use-user';
 import { LogoutButton } from '@/features/auth/logout-button';
 import Link from 'next/link';
 

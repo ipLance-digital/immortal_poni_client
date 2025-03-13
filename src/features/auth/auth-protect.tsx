@@ -1,6 +1,6 @@
 'use client';
 
-import { useUser } from '@/entities/auth/use-user';
+import { useUser } from '@/features/auth/actions/use-user';
 import { redirect } from 'next/navigation';
 
 export const AuthProtect = ({ children }: { children: React.ReactNode }) => {
