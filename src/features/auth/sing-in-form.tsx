@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useSignIn } from './use-sign-in';
+import { useSignIn } from './actions/use-sign-in';
 
 export const SignInForm = () => {
   const signInQuery = useSignIn();

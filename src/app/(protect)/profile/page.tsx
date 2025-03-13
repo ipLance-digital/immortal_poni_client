@@ -1,7 +1,7 @@
 'use client';
 
-import { useUser } from '@/entities/auth/use-auth-query';
-import { SignInForm } from '@/features/auth/sing-in-form';
+import { useUser } from '@/entities/auth/use-user';
+import { LogoutButton } from '@/features/auth/logout-button';
 import Link from 'next/link';
 
 export default function ProfilePage() {
@@ -11,15 +11,15 @@ export default function ProfilePage() {
     return <div>Loading...</div>;
   }
 
-  if (auth.data) {
-    return (
-      <div>
-        <Link href={'/'}>Главная</Link>
-        <p>Hello, {auth.data.username}</p>
-        {/* <button onClick={() => auth.logout()}>Выйти</button> */}
-      </div>
-    );
+  if (!auth.data) {
+    return null;
   }
 
-  return <SignInForm />;
+  return (
+    <div>
+      <Link href={'/'}>Главная</Link>
+      <LogoutButton />
+      <p>Hello, {auth.data.username}</p>
+    </div>
+  );
 }

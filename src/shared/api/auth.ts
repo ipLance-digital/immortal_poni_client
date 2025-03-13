@@ -1,5 +1,5 @@
 import { queryOptions } from '@tanstack/react-query';
-import { ApiRequest } from './axios';
+import { ApiRequest } from './api-request';
 
 type UserDTO = {
   id: string;
@@ -19,22 +19,20 @@ export const AuthAPI = {
         }),
     });
   },
+
+  // ===== MUTATIONS =====
   login: async (body: { username: string; password: string }) => {
     return ApiRequest('auth/login', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(body),
     });
   },
-  // logout: async () => {
-  //   return queryOptions({
-  //     queryKey: [AuthAPI.baseKey],
-  //     queryFn: (meta) =>
-  //       ApiRequest({
-  //         url: 'auth/logout',
-  //         method: 'POST',
-  //         signal: meta.signal,
-  //       }),
-  //   });
-  // },
+  logout: async () => {
+    return ApiRequest('auth/logout', {
+      method: 'POST',
+    });
+  },
 };
