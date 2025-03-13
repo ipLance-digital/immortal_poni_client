@@ -12,7 +12,7 @@ export const useLogout = () => {
     mutationFn: AuthAPI.logout,
     onSuccess: () => {
       router.push('/');
-      queryClient.removeQueries();
+      queryClient.resetQueries();
     },
   });
 

@@ -1,7 +1,6 @@
 'use client';
 
 import { useUser } from '@/features/auth/actions/use-user';
-import { LogoutButton } from '@/features/auth/logout-button';
 import Link from 'next/link';
 
 export default function ProfilePage() {
@@ -18,7 +17,6 @@ export default function ProfilePage() {
   return (
     <div>
       <Link href={'/'}>Главная</Link>
-      <LogoutButton />
       <p>Hello, {auth.data.username}</p>
     </div>
   );
