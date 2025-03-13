@@ -21,18 +21,29 @@ export const AuthAPI = {
   },
 
   // ===== MUTATIONS =====
-  login: async (body: { username: string; password: string }) => {
-    return ApiRequest('auth/login', {
+  login: async (body: { username: string; password: string }) =>
+    ApiRequest<UserDTO>('auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-    });
-  },
-  logout: async () => {
-    return ApiRequest('auth/logout', {
+    }),
+  signUp: async (body: {
+    username: string;
+    password: string;
+    email: string;
+    phone: string;
+  }) =>
+    ApiRequest<UserDTO>('auth/register', {
       method: 'POST',
-    });
-  },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    }),
+  logout: async () =>
+    ApiRequest('auth/logout', {
+      method: 'POST',
+    }),
 };

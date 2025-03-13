@@ -1,15 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { Button } from '@/shared/ui/button';
 import { useSignIn } from './actions/use-sign-in';
+import { Input } from '@/shared/ui/input';
+import Link from 'next/link';
 
 export const SignInForm = () => {
   const signInQuery = useSignIn();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get('username')!.toString();
+    const password = formData.get('password')!.toString();
+
     signInQuery.login({
       username,
       password,
@@ -17,21 +21,15 @@ export const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        name={'username'}
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type='password'
-        name={'password'}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+    <form onSubmit={handleSubmit} className='flex flex-col gap-2 items-center'>
+      <Input type='text' name={'username'} autoComplete='off' required />
+      <Input type='password' name={'password'} autoComplete='off' required />
 
-      <button disabled={signInQuery.isPending}>Sign In</button>
+      {!!signInQuery.error && <p>{signInQuery.error}</p>}
+      <Button loading={signInQuery.isPending} className='w-full'>
+        Войти
+      </Button>
+      <Link href={'sign-up'}>Зарегистрироваться</Link>
     </form>
   );
 };

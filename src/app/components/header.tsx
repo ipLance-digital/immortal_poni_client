@@ -2,25 +2,32 @@
 
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/features/auth/actions/use-user';
-import { LogoutButton } from '@/features/auth/logout-button';
+import { Profile } from './profile';
+import { Button } from '@/shared/ui/button';
+import { Skeleton } from '@/shared/ui/skeleton';
 
 export const Header = () => {
   const user = useUser();
   const router = useRouter();
 
+  if (user.isPending) {
+    return <Skeleton className='h-12 w-12 rounded-full' />;
+  }
+
   return (
-    <div>
+    <header className='py-2 px-10 flex items-center justify-between shadow-sm'>
+      <p>IPLanse</p>
       {user.data?.id ? (
-        <LogoutButton />
+        <Profile />
       ) : (
-        <button
+        <Button
           onClick={() => {
             router.push('sign-in');
           }}
         >
           Войти
-        </button>
+        </Button>
       )}
-    </div>
+    </header>
   );
 };

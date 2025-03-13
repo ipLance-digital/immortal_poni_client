@@ -1,16 +1,9 @@
 'use client';
 
-import Link from 'next/link';
-
 export default function Home() {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <Link href={'/profile'}>Профиль</Link>
+    <div className='container mx-auto'>
+      <h2 className='font-bold text-4xl text-teal-500'>Главная страница</h2>
     </div>
   );
 }

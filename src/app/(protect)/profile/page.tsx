@@ -1,7 +1,6 @@
 'use client';
 
 import { useUser } from '@/features/auth/actions/use-user';
-import Link from 'next/link';
 
 export default function ProfilePage() {
   const auth = useUser();
@@ -15,9 +14,11 @@ export default function ProfilePage() {
   }
 
   return (
-    <div>
-      <Link href={'/'}>Главная</Link>
-      <p>Hello, {auth.data.username}</p>
+    <div className='container mx-auto px-6'>
+      <h2 className='font-bold text-4xl text-teal-500'>Профиль</h2>
+      <p className='mt-5'>
+        Hello, <span className='font-semibold'>{auth.data.username}</span>!
+      </p>
     </div>
   );
 }
