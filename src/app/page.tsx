@@ -10,7 +10,9 @@ export default function Home() {
         gap: 12,
       }}
     >
-      <Button size='2xl'>Hello</Button>
+      <Button size='2xl' variant='solid'>
+        Hello
+      </Button>
       <Button size='xl'>Hello</Button>
       <Button size='lg'>Hello</Button>
       <Button size='md'>Hello</Button>
