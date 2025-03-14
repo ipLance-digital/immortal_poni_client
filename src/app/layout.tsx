@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Providers } from './providers';
 import './globals.css';
 import { Header } from './components/header';
+import { Toaster } from '@/shared/ui/sonner';
 
 export const metadata: Metadata = {
   title: 'IPLanse',
@@ -18,7 +19,9 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          {children}
+          <main>{children}</main>
+
+          <Toaster />
         </Providers>
       </body>
     </html>

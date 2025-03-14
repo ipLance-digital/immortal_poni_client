@@ -22,14 +22,28 @@ export const SignInForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-2 items-center'>
-      <Input type='text' name={'username'} autoComplete='off' required />
-      <Input type='password' name={'password'} autoComplete='off' required />
+      <Input
+        type='text'
+        name={'username'}
+        autoComplete='off'
+        placeholder={'Логин'}
+        required
+      />
+      <Input
+        type='password'
+        name={'password'}
+        autoComplete='off'
+        placeholder={'Пароль'}
+        required
+      />
 
       {!!signInQuery.error && <p>{signInQuery.error}</p>}
       <Button loading={signInQuery.isPending} className='w-full'>
         Войти
       </Button>
-      <Link href={'sign-up'}>Зарегистрироваться</Link>
+      <Link href={'sign-up'} className={'text-sm text-slate-500'}>
+        Зарегистрироваться
+      </Link>
     </form>
   );
 };

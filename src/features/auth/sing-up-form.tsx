@@ -30,16 +30,38 @@ export const SignUpForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-col gap-2 items-center'>
-      <Input type='text' name={'username'} autoComplete='off' />
-      <Input type='password' name={'password'} autoComplete='off' />
-      <Input type='email' name={'email'} autoComplete='off' />
-      <Input type='tel' name={'phone'} autoComplete='off' />
+      <Input
+        type='text'
+        name={'username'}
+        autoComplete='off'
+        placeholder={'Логин'}
+      />
+      <Input
+        type='password'
+        name={'password'}
+        autoComplete='off'
+        placeholder={'Пароль'}
+      />
+      <Input
+        type='email'
+        name={'email'}
+        autoComplete='off'
+        placeholder={'Email'}
+      />
+      <Input
+        type='tel'
+        name={'phone'}
+        autoComplete='off'
+        placeholder={'Телефон'}
+      />
 
       {!!error && <p>{error}</p>}
       <Button loading={isPending} className='w-full'>
         Зарегистрироваться
       </Button>
-      <Link href={'sign-in'}>Есть аккаунт? Просто войдите</Link>
+      <Link href={'sign-in'} className={'text-sm text-slate-500'}>
+        Есть аккаунт? Просто войдите
+      </Link>
     </form>
   );
 };

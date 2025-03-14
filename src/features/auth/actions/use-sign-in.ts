@@ -4,6 +4,7 @@ import { ApiError } from '@/shared/api/api-request';
 import { AuthAPI } from '@/shared/api/auth';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 export const useSignIn = () => {
   const router = useRouter();
@@ -13,6 +14,9 @@ export const useSignIn = () => {
       AuthAPI.login(data),
     onSuccess: () => {
       router.push('/profile');
+    },
+    onError: () => {
+      toast(2);
     },
   });
 
