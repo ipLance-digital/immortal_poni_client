@@ -6,28 +6,34 @@ const sizes: Record<
   RuleSet<object>
 > = {
   '2xs': css`
-    padding: 2px 8px;
+    padding: 0 12px;
+    height: 18px;
     font-size: 12px;
   `,
   xs: css`
-    padding: 4px 12px;
-    font-size: 14px;
+    padding: 0 12px;
+    height: 20px;
+    font-size: 12px;
   `,
   md: css`
-    padding: 10px 20px;
+    padding: 0 12px;
+    height: 24px;
     font-size: 16px;
   `,
   lg: css`
-    padding: 12px 24px;
-    font-size: 18px;
+    padding: 0 16px;
+    height: 32px;
+    font-size: 16px;
   `,
   xl: css`
-    padding: 16px 32px;
-    font-size: 20px;
+    padding: 0 16px;
+    height: 40px;
+    font-size: 16px;
   `,
   '2xl': css`
-    padding: 20px 40px;
-    font-size: 24px;
+    padding: 0 16px;
+    height: 48px;
+    font-size: 16px;
   `,
 };
 
@@ -36,15 +42,17 @@ const variants: Record<
   RuleSet<object>
 > = {
   solid: css`
-    background-color: #007bff;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.primary[600]};
+    color: ${({ theme }) => theme.colors.white};
+
     &:hover:not(:disabled) {
-      background-color: #0056b3;
+      background-color: ${({ theme }) => theme.colors.primary[700]};
     }
   `,
   subtle: css`
     background-color: rgba(0, 123, 255, 0.1);
     color: #007bff;
+
     &:hover:not(:disabled) {
       background-color: rgba(0, 123, 255, 0.2);
     }
@@ -52,6 +60,7 @@ const variants: Record<
   surface: css`
     background-color: #f0f0f0;
     color: #333;
+
     &:hover:not(:disabled) {
       background-color: #e0e0e0;
     }
@@ -60,6 +69,7 @@ const variants: Record<
     background-color: transparent;
     border: 1px solid #007bff;
     color: #007bff;
+
     &:hover:not(:disabled) {
       background-color: rgba(0, 123, 255, 0.1);
     }
@@ -67,6 +77,7 @@ const variants: Record<
   ghost: css`
     background-color: transparent;
     color: #007bff;
+
     &:hover:not(:disabled) {
       background-color: rgba(0, 123, 255, 0.1);
     }
@@ -74,6 +85,7 @@ const variants: Record<
   plain: css`
     background-color: transparent;
     color: #333;
+
     &:hover:not(:disabled) {
       background-color: rgba(0, 0, 0, 0.05);
     }
@@ -81,10 +93,9 @@ const variants: Record<
 };
 
 export const StyledButton = styled.button<ButtonVariantProps>`
-  padding: 10px 20px;
   width: fit-content;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
@@ -97,12 +108,8 @@ export const StyledButton = styled.button<ButtonVariantProps>`
     transform: translateY(2px) scale(0.98);
   }
 
-  &:hover {
-    background-color: #0056b3;
-  }
-
   &:disabled {
-    background-color: #cccccc;
+    opacity: 0.6;
     cursor: not-allowed;
   }
 `;

@@ -1,6 +1,11 @@
+'use client';
+
 import { Button } from '@/shared/ui';
+import { useTheme } from 'styled-components';
 
 export default function Home() {
+  const theme = useTheme();
+
   return (
     <div
       style={{
@@ -8,16 +13,18 @@ export default function Home() {
         display: 'flex',
         flexDirection: 'column',
         gap: 12,
+        backgroundColor: theme.colors.white,
+        height: '100dvh',
       }}
     >
       <Button size='2xl' variant='solid'>
-        Hello
+        Текст кнопки
       </Button>
-      <Button size='xl'>Hello</Button>
-      <Button size='lg'>Hello</Button>
-      <Button size='md'>Hello</Button>
-      <Button size='xs'>Hello</Button>
-      <Button size='2xs'>Hello</Button>
+      <Button size='xl'>Текст кнопки</Button>
+      <Button size='lg'>Текст кнопки</Button>
+      <Button size='md'>Текст кнопки</Button>
+      <Button size='xs'>Текст кнопки</Button>
+      <Button size='2xs'>Текст кнопки</Button>
     </div>
   );
 }
