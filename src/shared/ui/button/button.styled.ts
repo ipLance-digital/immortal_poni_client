@@ -1,5 +1,6 @@
 import styled, { css, RuleSet } from 'styled-components';
 import { ButtonVariantProps } from './button.types';
+import { motion } from 'motion/react';
 
 const sizes: Record<
   NonNullable<ButtonVariantProps['size']>,
@@ -92,7 +93,8 @@ const variants: Record<
   `,
 };
 
-export const StyledButton = styled.button<ButtonVariantProps>`
+export const StyledButton = styled(motion.button)<ButtonVariantProps>`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,16 +106,22 @@ export const StyledButton = styled.button<ButtonVariantProps>`
   color: white;
   cursor: pointer;
   transition-duration: 200ms;
+  white-space: nowrap;
+  overflow: hidden;
 
   ${({ size = 'md' }) => sizes[size]};
   ${({ variant = 'solid' }) => variants[variant]};
-
-  &:not(:disabled):active {
-    transform: translateY(2px);
-  }
 
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
+`;
+
+export const LoaderWrapper = styled(motion.div)`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

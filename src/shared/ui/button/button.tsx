@@ -2,7 +2,11 @@
 
 import { forwardRef } from 'react';
 import { ButtonProps } from './button.types';
-import { StyledButton } from './button.styled';
+import { LoaderWrapper, StyledButton } from './button.styled';
+import { motion } from 'motion/react';
+import { Loader } from '../loader';
+
+const ANIMATION_DURATION = 0.2;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, loading, ...props }, ref) => {
@@ -13,8 +17,19 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={'button'}
         disabled={loading || props.disabled}
       >
-        {loading && <div>O</div>}
-        {children}
+        <LoaderWrapper
+          animate={{ y: loading ? 0 : -20, opacity: loading ? 1 : 0 }}
+          transition={{ duration: ANIMATION_DURATION, type: 'keyframes' }}
+        >
+          <Loader />
+        </LoaderWrapper>
+
+        <motion.div
+          animate={{ y: loading ? 20 : 0, opacity: loading ? 0 : 1 }}
+          transition={{ duration: ANIMATION_DURATION }}
+        >
+          {children}
+        </motion.div>
       </StyledButton>
     );
   }

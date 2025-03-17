@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './button';
 
@@ -51,5 +52,17 @@ export const Default: Story = {
     children: 'Текст кнопки',
     size: '2xl',
     variant: 'solid',
+  },
+  render: (args) => {
+    const [loading, setLoading] = useState(false);
+
+    const handleClick = () => {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    };
+
+    return <Button {...args} loading={loading} onClick={handleClick} />;
   },
 };
