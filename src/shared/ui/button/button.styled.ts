@@ -93,6 +93,10 @@ const variants: Record<
 };
 
 export const StyledButton = styled.button<ButtonVariantProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   width: fit-content;
   border: none;
   border-radius: 8px;
@@ -104,8 +108,8 @@ export const StyledButton = styled.button<ButtonVariantProps>`
   ${({ size = 'md' }) => sizes[size]};
   ${({ variant = 'solid' }) => variants[variant]};
 
-  &:active {
-    transform: translateY(2px) scale(0.98);
+  &:not(:disabled):active {
+    transform: translateY(2px);
   }
 
   &:disabled {

@@ -5,9 +5,15 @@ import { ButtonProps } from './button.types';
 import { StyledButton } from './button.styled';
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, ...props }, ref) => {
+  ({ children, loading, ...props }, ref) => {
     return (
-      <StyledButton ref={ref} {...props} type={'button'}>
+      <StyledButton
+        ref={ref}
+        {...props}
+        type={'button'}
+        disabled={loading || props.disabled}
+      >
+        {loading && <div>O</div>}
         {children}
       </StyledButton>
     );

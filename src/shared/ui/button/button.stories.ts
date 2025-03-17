@@ -4,6 +4,42 @@ import { Button } from './button';
 const meta: Meta<typeof Button> = {
   title: 'Example/Button',
   component: Button,
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: 'A customizable button component with multiple variants',
+      },
+    },
+  },
+  argTypes: {
+    variant: {
+      control: { type: 'radio' },
+      options: ['solid', 'outline', 'ghost', 'subtle', 'surface', 'plain'],
+      description: 'Вариант стилизации',
+      table: {
+        type: { summary: 'solid | outline | ghost | subtle | surface | plain' },
+        defaultValue: { summary: 'solid' },
+      },
+    },
+    disabled: {
+      control: { type: 'boolean' },
+      description: 'Отключена ли кнопка',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    loading: {
+      control: { type: 'boolean' },
+      description: 'Статус загрузки',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    onClick: { action: 'clicked' },
+  },
 };
 
 export default meta;
@@ -12,8 +48,8 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   args: {
-    children: 'Default Button',
-    size: 'md',
+    children: 'Текст кнопки',
+    size: '2xl',
     variant: 'solid',
   },
 };
