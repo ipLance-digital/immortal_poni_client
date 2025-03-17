@@ -18,6 +18,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={loading || props.disabled}
       >
         <LoaderWrapper
+          initial={{ y: -100 }}
           animate={{ y: loading ? 0 : -20, opacity: loading ? 1 : 0 }}
           transition={{ duration: ANIMATION_DURATION, type: 'keyframes' }}
         >
