@@ -51,11 +51,11 @@ const variants: Record<
     }
   `,
   subtle: css`
-    background-color: rgba(0, 123, 255, 0.1);
-    color: #007bff;
+    background-color: ${({ theme }) => theme.colors.primary[50]};
+    color: ${({ theme }) => theme.colors.primary[600]};
 
     &:hover:not(:disabled) {
-      background-color: rgba(0, 123, 255, 0.2);
+      background-color: ${({ theme }) => theme.colors.primary[100]};
     }
   `,
   surface: css`

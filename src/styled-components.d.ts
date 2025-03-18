@@ -3,6 +3,6 @@ import { Theme } from '@/shared/theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: Theme.LIGHT_THEME;
+    colors: Theme['LIGHT_THEME'];
   }
 }

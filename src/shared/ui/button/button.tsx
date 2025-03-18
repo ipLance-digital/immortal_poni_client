@@ -20,7 +20,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         <LoaderWrapper
           initial={{ y: -100 }}
           animate={{ y: loading ? 0 : -20, opacity: loading ? 1 : 0 }}
-          transition={{ duration: ANIMATION_DURATION, type: 'keyframes' }}
+          transition={{ duration: ANIMATION_DURATION }}
         >
           <Loader />
         </LoaderWrapper>
