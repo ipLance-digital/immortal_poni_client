@@ -1,8 +1,9 @@
 import 'styled-components';
-import { Theme } from '@/shared/theme';
+import { ThemeShadows, ThemeColors } from '@/shared/theme';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: Theme['LIGHT_THEME'];
+    colors: ThemeColors;
+    shadows: ThemeShadows;
   }
 }

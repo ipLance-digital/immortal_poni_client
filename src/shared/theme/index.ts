@@ -1,9 +1,8 @@
-import { DARK_THEME } from './dark-theme';
-import { LIGHT_THEME } from './light-theme';
+import { LIGHT_THEME } from './colors';
+import { LIGHT_SHADOWS } from './shadows';
 
-export const theme = {
-  LIGHT_THEME,
-  DARK_THEME,
-};
+export const theme = {};
 
 export type Theme = typeof theme;
+export type ThemeColors = typeof LIGHT_THEME;
+export type ThemeShadows = typeof LIGHT_SHADOWS;

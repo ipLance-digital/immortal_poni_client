@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
+import { SupportWidget } from '@/widgets';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +19,13 @@ export default function RootLayout({
         <script async src='https://unpkg.com/react-scan/dist/auto.global.js' />
       </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div id={'main-wrapper'}>
+            {children}
+
+            <SupportWidget />
+          </div>
+        </Providers>
       </body>
     </html>
   );

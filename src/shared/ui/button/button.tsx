@@ -1,9 +1,9 @@
 'use client';
 
 import { forwardRef } from 'react';
+import { motion } from 'motion/react';
 import { ButtonProps } from './button.types';
 import { LoaderWrapper, StyledButton } from './button.styled';
-import { motion } from 'motion/react';
 import { Loader } from '../loader';
 
 const ANIMATION_DURATION = 0.2;
