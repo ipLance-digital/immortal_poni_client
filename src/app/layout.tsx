@@ -14,6 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
+      <head>
+        <script async src='https://unpkg.com/react-scan/dist/auto.global.js' />
+      </head>
       <body>
         <Providers>{children}</Providers>
       </body>
