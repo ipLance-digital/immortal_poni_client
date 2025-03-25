@@ -1,6 +1,6 @@
 import styled, { css, RuleSet } from 'styled-components';
-import { ButtonVariantProps } from './button.types';
 import { motion } from 'motion/react';
+import { ButtonVariantProps } from './button.types';
 
 const sizes: Record<
   NonNullable<ButtonVariantProps['size']>,
@@ -27,9 +27,10 @@ const sizes: Record<
     font-size: 16px;
   `,
   xl: css`
-    padding: 0 16px;
+    padding: 16px;
     height: 40px;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 20px;
   `,
   '2xl': css`
     padding: 0 16px;
@@ -40,17 +41,17 @@ const sizes: Record<
 
 const variants: Record<
   NonNullable<ButtonVariantProps['variant']>,
-  RuleSet<object>
+  RuleSet<ButtonVariantProps>
 > = {
-  solid: css`
-    background-color: ${({ theme }) => theme.colors.primary[600]};
+  solid: css<ButtonVariantProps>`
+    background-color: ${({ theme }) => theme.colors.gray[600]};
     color: ${({ theme }) => theme.colors.white};
 
     &:hover:not(:disabled) {
-      background-color: ${({ theme }) => theme.colors.primary[700]};
+      background-color: ${({ theme }) => theme.colors.gray[700]};
     }
   `,
-  subtle: css`
+  subtle: css<ButtonVariantProps>`
     background-color: ${({ theme }) => theme.colors.primary[50]};
     color: ${({ theme }) => theme.colors.primary[600]};
 
@@ -58,7 +59,7 @@ const variants: Record<
       background-color: ${({ theme }) => theme.colors.primary[100]};
     }
   `,
-  surface: css`
+  surface: css<ButtonVariantProps>`
     background-color: #f0f0f0;
     color: #333;
 
@@ -66,7 +67,7 @@ const variants: Record<
       background-color: #e0e0e0;
     }
   `,
-  outline: css`
+  outline: css<ButtonVariantProps>`
     background-color: transparent;
     border: 1px solid #007bff;
     color: #007bff;
@@ -75,7 +76,7 @@ const variants: Record<
       background-color: rgba(0, 123, 255, 0.1);
     }
   `,
-  ghost: css`
+  ghost: css<ButtonVariantProps>`
     background-color: transparent;
     color: #007bff;
 
@@ -83,7 +84,7 @@ const variants: Record<
       background-color: rgba(0, 123, 255, 0.1);
     }
   `,
-  plain: css`
+  plain: css<ButtonVariantProps>`
     background-color: transparent;
     color: #333;
 
@@ -99,7 +100,7 @@ export const StyledButton = styled(motion.button)<ButtonVariantProps>`
   align-items: center;
   justify-content: center;
   gap: 4px;
-  width: fit-content;
+  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'fit-content')};
   border: none;
   border-radius: 8px;
   background-color: #007bff;

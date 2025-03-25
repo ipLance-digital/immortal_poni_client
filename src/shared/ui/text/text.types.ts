@@ -13,6 +13,9 @@ export type TextVariant =
   | 'button-12';
 
 export interface ITextProps {
-  variant?: TextVariant;
   children: React.ReactNode;
+  variant?: TextVariant;
+  color?: string;
+  maxLength?: number;
+  style?: React.CSSProperties;
 }

@@ -42,7 +42,11 @@ export function Dropdown({
     open: isOpen,
     onOpenChange: setIsOpen,
     placement: 'bottom-end',
-    middleware: [offset(8), flip({ fallbackPlacements: ['top-end'] }), shift()],
+    middleware: [
+      offset(16),
+      flip({ fallbackPlacements: ['top-end'] }),
+      shift(),
+    ],
     whileElementsMounted: autoUpdate,
   });
 
@@ -93,7 +97,7 @@ export function Dropdown({
                     }}
                   >
                     {typeof item.label === 'string' ? (
-                      <Text variant='body-14'>{item.label}</Text>
+                      <Text>{item.label}</Text>
                     ) : (
                       item.label
                     )}

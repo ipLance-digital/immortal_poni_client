@@ -46,18 +46,20 @@ export const ApiRequest = async <T>(url: string, init?: RequestInit) => {
   if (csrftoken) {
     headers = {
       ...headers,
+      credentials: 'include',
       'X-CSRF-TOKEN': csrftoken,
     };
   }
 
   try {
     const response = await fetch(`${BASE_URL}${url}`, { ...init, headers });
+    const data = (await response.json()) as Promise<T>;
 
     if (!response.ok) {
-      throw new ApiError(response);
+      if (response.status === 401) {
+        throw new ApiError(response);
+      }
     }
-
-    const data = (await response.json()) as Promise<T>;
 
     return data;
   } catch (error) {

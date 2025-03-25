@@ -58,6 +58,9 @@ export const StyledText = styled.p<ITextProps>`
   align-items: center;
   column-gap: 8px;
   font-family: Inter, Arial, Helvetica, sans-serif;
+  color: ${({ color }) => color ?? 'inherit'};
+  overflow: hidden;
+  text-overflow: ellipsis;
 
-  ${({ variant = 'body-16' }) => VariantTypes[variant]};
+  ${({ variant = 'body-14' }) => VariantTypes[variant]};
 `;

@@ -11,3 +11,7 @@ export const Wrapper = styled.div<{ size: number }>`
   border-radius: 50%;
   overflow: hidden;
 `;
+
+export const AvatarSkeleton = styled(Wrapper)`
+  background-color: ${({ theme }) => theme.colors.gray[300]};
+`;

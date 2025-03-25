@@ -1,3 +1,11 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -12,14 +20,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100dvh;
   min-width: 100dvw;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  color: #1f2939;
 }
 
 a {
@@ -33,9 +34,4 @@ li {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.lucide {
-  width: 16px;
-  height: 16px;
 }
