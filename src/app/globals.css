@@ -5,9 +5,13 @@ body {
 }
 
 body {
+  position: relative;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #fafafa;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100dvh;
+  min-width: 100dvw;
 }
 
 *,
@@ -21,4 +25,17 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lucide {
+  width: 16px;
+  height: 16px;
 }

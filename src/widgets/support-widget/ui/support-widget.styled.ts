@@ -2,6 +2,7 @@ import { motion } from 'motion/react';
 import styled from 'styled-components';
 
 export const WidgetButton = styled(motion.button)`
+  margin-right: 100px;
   position: fixed;
   bottom: 16px;
   right: 16px;
@@ -37,6 +38,7 @@ export const WidgetButton = styled(motion.button)`
 `;
 
 export const WidgetWrapper = styled(motion.div)`
+  margin-right: 100px;
   position: fixed;
   bottom: 72px;
   right: 16px;
