@@ -1,4 +1,4 @@
-export type TextVariant =
+type TextVariant =
   | 'heading-1'
   | 'heading-2'
   | 'heading-3'
@@ -14,8 +14,7 @@ export type TextVariant =
 
 export interface ITextProps {
   children: React.ReactNode;
-  variant?: TextVariant;
-  color?: string;
-  maxLength?: number;
+  $variant?: TextVariant;
+  $color?: string;
   style?: React.CSSProperties;
 }

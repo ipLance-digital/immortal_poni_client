@@ -9,20 +9,20 @@ export const getGapValue = (value?: CSSProperties['gap']) =>
 const Stack = styled.div<IStackProps>`
   position: relative;
   display: flex;
-  height: ${({ height }) =>
-    typeof height === 'number' ? height + 'px' : height};
-  flex: ${({ flex }) => flex};
-  flex-direction: ${({ direction }) => direction};
-  align-items: ${({ align }) => align};
-  justify-content: ${({ justify }) => justify};
-  flex-wrap: ${({ wrap }) => wrap};
-  padding: ${({ padding }) =>
-    typeof padding === 'number' ? padding + 'px' : padding};
+  height: ${({ $height }) =>
+    typeof $height === 'number' ? $height + 'px' : $height};
+  flex: ${({ $flex: flex }) => flex};
+  flex-direction: ${({ $direction }) => $direction};
+  align-items: ${({ $align }) => $align};
+  justify-content: ${({ $justify }) => $justify};
+  flex-wrap: ${({ $wrap }) => $wrap};
+  padding: ${({ $padding }) =>
+    typeof $padding === 'number' ? $padding + 'px' : $padding};
 
-  ${({ gap }) => {
-    if (typeof gap === 'object') {
-      const rowGap = getGapValue(gap.row);
-      const columnGap = getGapValue(gap.column);
+  ${({ $gap }) => {
+    if (typeof $gap === 'object') {
+      const rowGap = getGapValue($gap.row);
+      const columnGap = getGapValue($gap.column);
 
       return `
         row-gap: ${rowGap};
@@ -30,11 +30,11 @@ const Stack = styled.div<IStackProps>`
       `;
     }
 
-    return `gap: ${getGapValue(gap)};`;
+    return `gap: ${getGapValue($gap)};`;
   }}
 
-  ${({ center }) =>
-    center &&
+  ${({ $center }) =>
+    $center &&
     css`
       height: 100%;
       align-items: center;

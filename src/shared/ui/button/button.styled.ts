@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { ButtonVariantProps } from './button.types';
 
 const sizes: Record<
-  NonNullable<ButtonVariantProps['size']>,
+  NonNullable<ButtonVariantProps['$size']>,
   RuleSet<object>
 > = {
   '2xs': css`
@@ -40,7 +40,7 @@ const sizes: Record<
 };
 
 const variants: Record<
-  NonNullable<ButtonVariantProps['variant']>,
+  NonNullable<ButtonVariantProps['$variant']>,
   RuleSet<ButtonVariantProps>
 > = {
   solid: css<ButtonVariantProps>`
@@ -110,8 +110,8 @@ export const StyledButton = styled(motion.button)<ButtonVariantProps>`
   white-space: nowrap;
   overflow: hidden;
 
-  ${({ size = 'md' }) => sizes[size]};
-  ${({ variant = 'solid' }) => variants[variant]};
+  ${({ $size = 'md' }) => sizes[$size]};
+  ${({ $variant = 'solid' }) => variants[$variant]};
 
   &:disabled {
     opacity: 0.6;

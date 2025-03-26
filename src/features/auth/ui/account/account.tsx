@@ -50,7 +50,7 @@ export const AccountSwitcher = () => {
 
   if (isLoading || loginPending || logoutPending) {
     return (
-      <HStack as={AccountTrigger} align='center' gap={8}>
+      <HStack as={AccountTrigger} $align='center' $gap={8}>
         <Avatar username='' loading={isLoading} />
         <Icon icon={ChevronDown} />
       </HStack>
@@ -61,13 +61,13 @@ export const AccountSwitcher = () => {
     return (
       <Popover
         trigger={
-          <Button variant='surface' size='xl'>
+          <Button $variant='surface' $size='xl'>
             Войти
           </Button>
         }
       >
         <form onSubmit={handleSubmit}>
-          <VStack gap={16} padding={16}>
+          <VStack $gap={16} $padding={16}>
             <VStack>
               <Text>Логин</Text>
               <input type='text' name='username' required />
@@ -77,7 +77,7 @@ export const AccountSwitcher = () => {
               <input type='password' name='password' required />
             </VStack>
 
-            <Button type='submit' $fullWidth size='lg'>
+            <Button type='submit' $fullWidth $size='lg'>
               Войти
             </Button>
           </VStack>
@@ -92,7 +92,7 @@ export const AccountSwitcher = () => {
         isOpen={isOpen}
         onOpenChange={toggleOpen}
         trigger={
-          <HStack as={AccountTrigger} align='center' gap={8}>
+          <HStack as={AccountTrigger} $align='center' $gap={8}>
             <Avatar username={user.username} />
             <Icon
               icon={ChevronDown}
@@ -101,12 +101,12 @@ export const AccountSwitcher = () => {
           </HStack>
         }
       >
-        <VStack gap={16} padding={16} style={{ width: 300 }}>
-          <VStack gap={8} align='center'>
+        <VStack $gap={16} $padding={16} style={{ width: 300 }}>
+          <VStack $gap={8} $align='center'>
             <Avatar username={user.username} size={64} />
-            <VStack align='center'>
+            <VStack $align='center'>
               <Text>{user.username}</Text>
-              <Text variant='body-13' color={theme.colors.gray[400]}>
+              <Text $variant='body-13' $color={theme.colors.gray[400]}>
                 {user.email}
               </Text>
             </VStack>
@@ -118,7 +118,7 @@ export const AccountSwitcher = () => {
 
           <AccountItem>
             <Icon icon={Sparkles} />
-            <HStack flex={1}>
+            <HStack $flex={1}>
               <Text>Тема</Text>
             </HStack>
 
@@ -127,14 +127,14 @@ export const AccountSwitcher = () => {
 
           <Divider />
 
-          <VStack gap={8}>
+          <VStack $gap={8}>
             <AccountItem>
               <Avatar username={user.username} size={32} />
-              <VStack flex={1}>
+              <VStack $flex={1}>
                 <Text>{user.username}</Text>
                 <Text
-                  variant='body-13'
-                  color={theme.colors.gray[400]}
+                  $variant='body-13'
+                  $color={theme.colors.gray[400]}
                   style={{ maxWidth: '65%' }}
                 >
                   {user.email}

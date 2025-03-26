@@ -6,13 +6,13 @@ type GapObject = {
 };
 
 export interface IStackProps {
-  height?: CSSProperties['height'];
-  flex?: CSSProperties['flex'];
-  padding?: CSSProperties['padding'];
-  direction?: CSSProperties['flexDirection'];
-  align?: CSSProperties['alignItems'];
-  justify?: CSSProperties['justifyContent'];
-  wrap?: CSSProperties['flexWrap'];
-  gap?: CSSProperties['gap'] | GapObject;
-  center?: boolean;
+  $height?: CSSProperties['height'];
+  $flex?: CSSProperties['flex'];
+  $padding?: CSSProperties['padding'];
+  $direction?: CSSProperties['flexDirection'];
+  $align?: CSSProperties['alignItems'];
+  $justify?: CSSProperties['justifyContent'];
+  $wrap?: CSSProperties['flexWrap'];
+  $gap?: CSSProperties['gap'] | GapObject;
+  $center?: boolean;
 }

@@ -1,7 +1,10 @@
 import styled, { css, RuleSet } from 'styled-components';
-import { ITextProps, TextVariant } from './text.types';
+import { ITextProps } from './text.types';
 
-const VariantTypes: Record<TextVariant, RuleSet<object>> = {
+const VariantTypes: Record<
+  NonNullable<ITextProps['$variant']>,
+  RuleSet<object>
+> = {
   'heading-1': css`
     font-size: 32px;
     line-height: 40px;
@@ -58,9 +61,9 @@ export const StyledText = styled.p<ITextProps>`
   align-items: center;
   column-gap: 8px;
   font-family: Inter, Arial, Helvetica, sans-serif;
-  color: ${({ color }) => color ?? 'inherit'};
+  color: ${({ $color }) => $color ?? 'inherit'};
   overflow: hidden;
   text-overflow: ellipsis;
 
-  ${({ variant = 'body-14' }) => VariantTypes[variant]};
+  ${({ $variant = 'body-14' }) => VariantTypes[$variant]};
 `;
