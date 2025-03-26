@@ -30,3 +30,6 @@ jobs:
       # Шаг 4: Запустить линтинг (например, с использованием ESLint)
       - name: Run lint
         run: npm run lint
+
+      - name: Run tests
+        run: npm run test -- --run
