@@ -21,6 +21,8 @@ export const Popover: FC<PopoverProps> = ({
   trigger,
   isOpen: controlledIsOpen,
   onOpenChange,
+  placement = 'bottom-end',
+  offset: internalOffset = 8,
 }) => {
   const [internalOpen, setInternalOpen] = useState<boolean>(false);
   const isOpen =
@@ -40,9 +42,9 @@ export const Popover: FC<PopoverProps> = ({
   const { refs, floatingStyles, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-    placement: 'bottom-end',
+    placement,
     middleware: [
-      offset(8),
+      offset(internalOffset),
       flip({
         fallbackPlacements: ['top-end'],
       }),

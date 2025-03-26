@@ -6,7 +6,7 @@ import { ButtonProps } from './button.types';
 import { LoaderWrapper, StyledButton } from './button.styled';
 import { Loader } from '../loader';
 
-const ANIMATION_DURATION = 0.2;
+const ANIMATION_DURATION = 0;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, loading, type = 'button', ...props }, ref) => {
