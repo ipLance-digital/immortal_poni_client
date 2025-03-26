@@ -1,0 +1,32 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - '*' # Запускать при пуше в любую ветку
+  pull_request:
+    branches:
+      - dev # Запускать при PR в ветку dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Клонировать репозиторий
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Шаг 2: Установить Node.js (если ваш проект на JS)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+        # Шаг 3: Установить зависимости
+      - name: Install dependencies
+        run: npm install
+
+      # Шаг 4: Запустить линтинг (например, с использованием ESLint)
+      - name: Run lint
+        run: npm run list
