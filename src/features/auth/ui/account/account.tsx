@@ -1,6 +1,5 @@
 'use client';
 
-import { ChangeEvent } from 'react';
 import {
   Check,
   ChevronDown,
@@ -9,6 +8,8 @@ import {
   Plus,
   Sparkles,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { useTheme } from 'styled-components';
 import {
   Avatar,
   Button,
@@ -24,35 +25,22 @@ import { useToggle } from '@/shared/hooks';
 import { useUser } from '../../model/useUser';
 import { useLogin } from '../../model/useLogin';
 import { useLogout } from '../../model/useLogout';
-import { useTheme } from 'styled-components';
 import { AccountTabs } from './ui/account-tabs';
 
 export const AccountSwitcher = () => {
+  const router = useRouter();
   const { user, isLoading } = useUser();
-  const { login, loginPending } = useLogin();
+  const { loginPending } = useLogin();
   const { logout, logoutPending } = useLogout();
 
   const theme = useTheme();
   const [isOpen, toggleOpen] = useToggle();
 
-  const handleSubmit = (e: ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-    const username = String(formData.get('username'));
-    const password = String(formData.get('password'));
-
-    login({
-      username,
-      password,
-    });
-  };
-
   if (isLoading || loginPending || logoutPending) {
     return (
       <HStack as={AccountTrigger} align='center' gap={8}>
         <Avatar username='' loading={isLoading} />
-        <Icon icon={ChevronDown} />
+        {/* <Icon icon={ChevronDown} /> */}
       </HStack>
     );
   }
@@ -61,7 +49,11 @@ export const AccountSwitcher = () => {
     return (
       <HStack gap={8}>
         <Button size='xl'>Зарегистрироваться</Button>
-        <Button variant='surface' size='xl'>
+        <Button
+          variant='surface'
+          size='xl'
+          onClick={() => router.push('/login')}
+        >
           Войти
         </Button>
       </HStack>

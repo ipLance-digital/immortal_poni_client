@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
 import { z } from 'zod';
 import { LoginSchema, RegisterSchema, UserSchema } from '@/entities/user/model';
-import { apiFetch } from '@/shared/api/api-request';
+import { apiFetch } from '@/shared/api/api-fetch';
 
 export const Auth = {
   baseKey: 'auth',

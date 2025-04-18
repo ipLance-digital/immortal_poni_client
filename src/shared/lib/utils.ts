@@ -25,16 +25,13 @@ export const getInitials = (name: string): string => {
   return `${firstInitial}${lastInitial}`;
 };
 
-export const getCookies = async (key: string): Promise<string | undefined> => {
+export const getCookie = (key: string): string | null => {
   if (typeof window !== 'undefined') {
-    return document.cookie
-      .split('; ')
-      .find((row) => row.startsWith(`${key}=`))
-      ?.split('=')[1];
-  } else {
-    const { cookies } = await import('next/headers');
-    return (await cookies()).get(key.replace('_', ''))?.value;
+    const cookies = document.cookie.split('; ');
+    const cookie = cookies.find((row) => row.startsWith(`${key}=`));
+    return cookie ? cookie.split('=')[1] : null;
   }
+  return null;
 };
 
 export const safeJSONParse = (text: string) => {

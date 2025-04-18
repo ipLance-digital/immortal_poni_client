@@ -1,8 +1,9 @@
 import { ZodSchema } from 'zod';
-import { getCookies, safeJSONParse } from '@/shared/lib/utils';
+import { getCookie, safeJSONParse } from '@/shared/lib/utils';
 import { Auth } from './auth/auth.api';
 
 const BASE_URL = 'api/v1';
+const isServer = typeof window === 'undefined';
 
 type ApiFetchOptions<T, B = unknown> = {
   method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
@@ -32,8 +33,8 @@ export const apiFetch = async <T = unknown>(
     signal,
     retry = true,
   } = options;
-  const csrftoken = await getCookies('csrf_token');
-  const accessToken = await getCookies('access_token');
+  const csrftoken = getCookie('csrf_token');
+  const accessToken = getCookie('access_token');
 
   if (bodySchema && body) {
     const validation = bodySchema.safeParse(body);
@@ -44,7 +45,11 @@ export const apiFetch = async <T = unknown>(
     }
   }
 
-  const response = await fetch(`/${BASE_URL}/${url}`, {
+  const fullURL = isServer
+    ? `${process.env.NEXT_APP_PUBLIC_API}/${BASE_URL}/${url}`
+    : `/${BASE_URL}/${url}`;
+
+  const response = await fetch(fullURL, {
     method,
     headers: {
       'Content-Type': 'application/json',
