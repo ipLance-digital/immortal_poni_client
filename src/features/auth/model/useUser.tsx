@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import { AuthAPI } from '../api/auth.api';
+import { API } from '@/shared/api';
 
 export const useUser = () => {
   const { data, isLoading, isError, error } = useQuery({
-    ...AuthAPI.me(),
+    ...API.auth.me(),
   });
 
   return { user: data, isLoading, isError, error };

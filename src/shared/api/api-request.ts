@@ -1,6 +1,6 @@
 import { ZodSchema } from 'zod';
-import { AuthAPI } from '@/features/auth/api/auth.api';
 import { getCookies, safeJSONParse } from '@/shared/lib/utils';
+import { Auth } from './auth/auth.api';
 
 const BASE_URL = 'api/v1';
 
@@ -63,7 +63,7 @@ export const apiFetch = async <T = unknown>(
     const error = json as ApiErrorData;
 
     if (response.status === 401 && retry && accessToken) {
-      const refreshed = await AuthAPI.refresh();
+      const refreshed = await Auth.refresh();
 
       if (refreshed) {
         return apiFetch(url, { ...options, retry: false });

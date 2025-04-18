@@ -59,30 +59,12 @@ export const AccountSwitcher = () => {
 
   if (!user) {
     return (
-      <Popover
-        trigger={
-          <Button variant='surface' size='xl'>
-            Войти
-          </Button>
-        }
-      >
-        <form onSubmit={handleSubmit}>
-          <VStack gap={16} padding={16}>
-            <VStack>
-              <Text>Логин</Text>
-              <input type='text' name='username' required />
-            </VStack>
-            <VStack>
-              <Text>Пароль</Text>
-              <input type='password' name='password' required />
-            </VStack>
-
-            <Button type='submit' $fullWidth size='lg'>
-              Войти
-            </Button>
-          </VStack>
-        </form>
-      </Popover>
+      <HStack gap={8}>
+        <Button size='xl'>Зарегистрироваться</Button>
+        <Button variant='surface' size='xl'>
+          Войти
+        </Button>
+      </HStack>
     );
   }
 

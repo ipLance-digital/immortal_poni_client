@@ -3,12 +3,12 @@ import { z } from 'zod';
 import { LoginSchema, RegisterSchema, UserSchema } from '@/entities/user/model';
 import { apiFetch } from '@/shared/api/api-request';
 
-export const AuthAPI = {
+export const Auth = {
   baseKey: 'auth',
   // ===== QUERIES =====
   me: () =>
     queryOptions({
-      queryKey: [AuthAPI.baseKey],
+      queryKey: [Auth.baseKey],
       queryFn: () =>
         apiFetch('auth/me', {
           schema: UserSchema,
