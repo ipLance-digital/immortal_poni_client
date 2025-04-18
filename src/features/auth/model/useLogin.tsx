@@ -1,18 +1,21 @@
 'use client';
 
-import { useMutation } from '@tanstack/react-query';
-import { AuthAPI, Credentials } from '../api/auth.api';
-import { queryClient } from '@/shared/api/query-client';
 import { toast } from 'sonner';
+import { useMutation } from '@tanstack/react-query';
+import { queryClient, API, LoginDTO } from '@/shared/api';
+import { useRouter } from 'next/navigation';
 
 export const useLogin = () => {
+  const router = useRouter();
+
   const { mutate, isPending } = useMutation({
-    mutationKey: [AuthAPI.baseKey],
-    mutationFn: (data: Credentials) => AuthAPI.login(data),
+    mutationKey: [API.auth.baseKey],
+    mutationFn: (data: LoginDTO) => API.auth.login(data),
     onError: () => {
       toast.error('Неправильный логин или пароль');
     },
     onSuccess: () => {
+      router.push('/');
       queryClient.resetQueries();
     },
   });

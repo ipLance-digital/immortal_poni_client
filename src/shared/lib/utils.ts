@@ -24,3 +24,20 @@ export const getInitials = (name: string): string => {
 
   return `${firstInitial}${lastInitial}`;
 };
+
+export const getCookie = (key: string): string | null => {
+  if (typeof window !== 'undefined') {
+    const cookies = document.cookie.split('; ');
+    const cookie = cookies.find((row) => row.startsWith(`${key}=`));
+    return cookie ? cookie.split('=')[1] : null;
+  }
+  return null;
+};
+
+export const safeJSONParse = (text: string) => {
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Сервер вернул не JSON: ${text || 'Пустой ответ'}`);
+  }
+};
