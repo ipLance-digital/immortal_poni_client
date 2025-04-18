@@ -1,10 +1,11 @@
 {
   "name": "iplance",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "release": "standard-version",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
@@ -49,6 +50,7 @@
     "eslint-plugin-storybook": "^0.11.4",
     "jsdom": "^26.0.0",
     "playwright": "^1.51.0",
+    "standard-version": "^9.5.0",
     "storybook": "^8.6.4",
     "typescript": "^5",
     "vitest": "^3.0.8"
