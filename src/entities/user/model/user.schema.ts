@@ -7,3 +7,22 @@ export const UserSchema = z.object({
   phone: z.string(),
   created_at: z.coerce.date(),
 });
+
+export const LoginSchema = z.object({
+  username: z.string(),
+  password: z.string().min(8),
+});
+
+export const RegisterSchema = UserSchema.pick({
+  username: true,
+  email: true,
+  phone: true,
+})
+  .extend({
+    password: z.string().min(8),
+    passwordConfirm: z.string().min(8),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: 'Пароли не совпадают',
+    path: ['passwordConfirm'],
+  });
