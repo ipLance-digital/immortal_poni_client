@@ -1,13 +1,17 @@
 import { ZodSchema } from 'zod';
+import { AuthAPI } from '@/features/auth/api/auth.api';
+import { getCookies, safeJSONParse } from '@/shared/lib/utils';
 
 const BASE_URL = 'api/v1';
 
-type ApiFetchOptions<T> = {
+type ApiFetchOptions<T, B = unknown> = {
   method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
   headers?: HeadersInit;
-  body?: unknown;
+  body?: B;
+  bodySchema?: ZodSchema<B>;
   schema?: ZodSchema<T>;
   signal?: AbortSignal;
+  retry?: boolean;
 };
 
 type ApiErrorData = {
@@ -19,17 +23,25 @@ export const apiFetch = async <T = unknown>(
   url: string,
   options: ApiFetchOptions<T>
 ): Promise<T> => {
-  const { method = 'GET', headers = {}, body, schema, signal } = options;
-  let csrftoken: string | undefined;
+  const {
+    method = 'GET',
+    headers = {},
+    body,
+    bodySchema,
+    schema,
+    signal,
+    retry = true,
+  } = options;
+  const csrftoken = await getCookies('csrf_token');
+  const accessToken = await getCookies('access_token');
 
-  if (typeof window !== 'undefined') {
-    csrftoken = document.cookie
-      .split('; ')
-      .find((row) => row.startsWith('csrf_token='))
-      ?.split('=')[1];
-  } else {
-    const { cookies } = await import('next/headers');
-    csrftoken = (await cookies()).get('csrftoken')?.value;
+  if (bodySchema && body) {
+    const validation = bodySchema.safeParse(body);
+
+    if (!validation.success) {
+      console.error('Невалидное тело запроса:', validation.error);
+      throw new Error('Некорректные данные для запроса');
+    }
   }
 
   const response = await fetch(`/${BASE_URL}/${url}`, {
@@ -45,19 +57,20 @@ export const apiFetch = async <T = unknown>(
   });
 
   const text = await response.text();
-  let json: unknown;
-
-  try {
-    json = JSON.parse(text);
-  } catch {
-    throw new Error(`Сервер вернул не JSON: ${text || 'Пустой ответ'}`);
-  }
+  const json = safeJSONParse(text);
 
   if (!response.ok) {
-    const err = json as ApiErrorData;
-    const message = err?.detail || `Ошибка ${response.status}`;
+    const error = json as ApiErrorData;
 
-    throw new Error(message);
+    if (response.status === 401 && retry && accessToken) {
+      const refreshed = await AuthAPI.refresh();
+
+      if (refreshed) {
+        return apiFetch(url, { ...options, retry: false });
+      }
+    }
+
+    throw new Error(error.detail || `Ошибка ${response.status}`);
   }
 
   if (schema) {
