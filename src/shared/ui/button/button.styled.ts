@@ -94,13 +94,16 @@ const variants: Record<
   `,
 };
 
-export const StyledButton = styled(motion.button)<ButtonVariantProps>`
+export const StyledButton = styled(motion.button).withConfig({
+  shouldForwardProp: (prop) =>
+    !['fullWidth', 'variant', 'color', 'size'].includes(prop),
+})<ButtonVariantProps>`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'fit-content')};
+  width: ${({ fullWidth }) => (fullWidth ? '100%' : 'fit-content')};
   border: none;
   border-radius: 8px;
   background-color: #007bff;

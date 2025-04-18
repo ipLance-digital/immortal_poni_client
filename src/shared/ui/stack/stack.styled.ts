@@ -6,7 +6,20 @@ import { IStackProps } from './stack.types';
 export const getGapValue = (value?: CSSProperties['gap']) =>
   typeof value === 'number' ? `${value}px` : value || '0';
 
-const Stack = styled.div<IStackProps>`
+const Stack = styled.div.withConfig({
+  shouldForwardProp: (prop) =>
+    ![
+      'height',
+      'flex',
+      'padding',
+      'direction',
+      'align',
+      'justify',
+      'wrap',
+      'gap',
+      'center',
+    ].includes(prop),
+})<IStackProps>`
   position: relative;
   display: flex;
   height: ${({ height }) =>

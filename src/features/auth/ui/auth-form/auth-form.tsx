@@ -26,7 +26,7 @@ export const AuthForm = () => {
         <StyledInput type='text' name='username' id='' />
         <StyledInput type='password' name='password' id='' />
 
-        <Button type={'submit'} size='lg' loading={loginPending} $fullWidth>
+        <Button type={'submit'} size='lg' loading={loginPending} fullWidth>
           Войти
         </Button>
       </VStack>
