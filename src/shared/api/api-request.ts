@@ -1,72 +1,75 @@
-const BASE_URL = '/api/v1/';
+import { ZodSchema } from 'zod';
 
-export class ApiError extends Error {
-  public status: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public data: any;
+const BASE_URL = 'api/v1';
 
-  constructor(public response: Response, message?: string) {
-    super(message || `ApiError: ${response.status}`);
-    this.status = response.status;
-    this.name = 'ApiError';
+type ApiFetchOptions<T> = {
+  method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+  headers?: HeadersInit;
+  body?: unknown;
+  schema?: ZodSchema<T>;
+  signal?: AbortSignal;
+};
 
-    this.parseResponse();
-  }
+type ApiErrorData = {
+  detail?: string;
+  [key: string]: unknown;
+};
 
-  private async parseResponse() {
-    try {
-      this.data = await this.response.json();
-    } catch {
-      this.data = null;
-    }
-  }
-
-  getErrorMessage(): string {
-    return this.data.detail || this.message;
-  }
-}
-
-export const ApiRequest = async <T>(url: string, init?: RequestInit) => {
+export const apiFetch = async <T = unknown>(
+  url: string,
+  options: ApiFetchOptions<T>
+): Promise<T> => {
+  const { method = 'GET', headers = {}, body, schema, signal } = options;
   let csrftoken: string | undefined;
 
-  // Проверка, если выполняется на клиенте
   if (typeof window !== 'undefined') {
     csrftoken = document.cookie
       .split('; ')
       .find((row) => row.startsWith('csrf_token='))
       ?.split('=')[1];
   } else {
-    // Серверный контекст, если есть доступ к cookies через заголовки
     const { cookies } = await import('next/headers');
     csrftoken = (await cookies()).get('csrftoken')?.value;
   }
 
-  let headers = { ...init?.headers };
-
-  if (csrftoken) {
-    headers = {
+  const response = await fetch(`/${BASE_URL}/${url}`, {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
       ...headers,
-      credentials: 'include',
-      'X-CSRF-TOKEN': csrftoken,
-    };
-  }
+      ...(csrftoken ? { 'X-CSRF-TOKEN': csrftoken } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
+    credentials: 'include',
+    signal,
+  });
+
+  const text = await response.text();
+  let json: unknown;
 
   try {
-    const response = await fetch(`${BASE_URL}${url}`, { ...init, headers });
-    const data = (await response.json()) as Promise<T>;
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        throw new ApiError(response);
-      }
-    }
-
-    return data;
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message);
-    }
-
-    throw new Error('Неизвестная ошибка');
+    json = JSON.parse(text);
+  } catch {
+    throw new Error(`Сервер вернул не JSON: ${text || 'Пустой ответ'}`);
   }
+
+  if (!response.ok) {
+    const err = json as ApiErrorData;
+    const message = err?.detail || `Ошибка ${response.status}`;
+
+    throw new Error(message);
+  }
+
+  if (schema) {
+    const result = schema.safeParse(json);
+
+    if (!result.success) {
+      console.error('Ошибка валидации данных:', result.error);
+      throw new Error('Невалидный ответ от сервера');
+    }
+
+    return result.data;
+  }
+
+  return json as T;
 };

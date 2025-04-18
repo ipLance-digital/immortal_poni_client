@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
-import { SupportWidget } from '@/widgets';
 import { Header } from '@/shared/ui';
 
 export const metadata: Metadata = {
@@ -23,11 +22,7 @@ export default function RootLayout({
         <Providers>
           <Header />
 
-          <main id={'main-wrapper'}>
-            {children}
-
-            <SupportWidget />
-          </main>
+          <main id={'main-wrapper'}>{children}</main>
 
           {/* <Footer /> */}
         </Providers>

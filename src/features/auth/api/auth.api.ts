@@ -1,6 +1,6 @@
-import { UserDTO } from '@/entities/user/types';
-import { ApiRequest } from '@/shared/api/api-request';
 import { queryOptions } from '@tanstack/react-query';
+import { UserSchema } from '@/entities/user/model';
+import { apiFetch } from '@/shared/api/api-request';
 
 export interface Credentials {
   username: string;
@@ -9,28 +9,29 @@ export interface Credentials {
 
 export const AuthAPI = {
   baseKey: 'user',
+  // ===== QUERIES =====
   me: () =>
-    queryOptions<UserDTO>({
+    queryOptions({
       queryKey: [AuthAPI.baseKey],
-      queryFn: () => ApiRequest('auth/me'),
+      queryFn: () =>
+        apiFetch('auth/me', {
+          schema: UserSchema,
+        }),
       retry: 0,
     }),
 
   // ===== MUTATIONS =====
   login: (credentials: Credentials) =>
-    ApiRequest<string>('auth/login', {
+    apiFetch<string>('auth/login', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
+      body: credentials,
     }),
   logout: () =>
-    ApiRequest<string>('auth/logout', {
+    apiFetch<string>('auth/logout', {
       method: 'POST',
     }),
   refresh: () =>
-    ApiRequest<string>('auth/refresh', {
+    apiFetch<string>('auth/refresh', {
       method: 'POST',
     }),
 };
