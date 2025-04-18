@@ -53,7 +53,9 @@ const VariantTypes: Record<TextVariant, RuleSet<object>> = {
   `,
 };
 
-export const StyledText = styled.p<ITextProps>`
+export const StyledText = styled.p.withConfig({
+  shouldForwardProp: (prop) => !['variant', 'color'].includes(prop),
+})<ITextProps>`
   display: inline-flex;
   align-items: center;
   column-gap: 8px;

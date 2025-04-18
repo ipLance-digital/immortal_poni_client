@@ -8,7 +8,7 @@ export interface ButtonVariantProps {
   /** @default "solid" */
   variant?: 'solid' | 'subtle' | 'surface' | 'outline' | 'ghost' | 'plain';
   color?: keyof ThemeColors;
-  $fullWidth?: boolean;
+  fullWidth?: boolean;
 }
 
 export type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
