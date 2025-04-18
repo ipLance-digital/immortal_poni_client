@@ -1,0 +1,22 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - run: npm run release
+      - run: git push --follow-tags origin main
+        env:
+          GIT_AUTHOR_NAME: Никита
+          GIT_AUTHOR_EMAIL: nikita.silchenko.work@yandex.ru
+          GIT_COMMITTER_NAME: Никита
+          GIT_COMMITTER_EMAIL: nikita.silchenko.work@yandex.ru
