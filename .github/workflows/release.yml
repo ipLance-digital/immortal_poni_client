@@ -13,6 +13,9 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
+      - run: |
+          git config user.name "silchenkoofficial"
+          git config user.email "nikita.silchenko.work@yandex.ru"
       - run: npm run release
       - run: git push --follow-tags origin main
         env:
