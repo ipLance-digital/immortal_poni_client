@@ -9,7 +9,7 @@
     "start": "next start",
     "prepare": "husky install",
     "lint": "next lint",
-    "test": "vitest --run",
+    "test": "vitest run",
     "sb": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
