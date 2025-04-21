@@ -58,11 +58,14 @@
     "vitest": "^3.0.8"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "22"
   },
   "eslintConfig": {
     "extends": [
       "plugin:storybook/recommended"
     ]
+  },
+  "volta": {
+    "node": "22.14.0"
   }
 }

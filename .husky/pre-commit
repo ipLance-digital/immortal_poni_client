@@ -1,5 +1,2 @@
-#!/bin/sh
-. "$NVM_DIR/nvm.sh"
-nvm use 22
-
+# Запускаем линт и тесты
 npm run lint && npm run test
