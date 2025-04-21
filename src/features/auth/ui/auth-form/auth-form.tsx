@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, VStack } from '@/shared/ui';
+import { Button, Text, VStack } from '@/shared/ui';
 import { FormWrapper, LoginWrapper, StyledInput } from './auth-form.styled';
 import { useLogin } from '../../model';
 
@@ -21,7 +21,8 @@ export const AuthForm = () => {
   };
 
   return (
-    <VStack as={LoginWrapper}>
+    <VStack as={LoginWrapper} gap={16}>
+      <Text variant='heading-2'>Вход</Text>
       <VStack as={FormWrapper} onSubmit={handleSubmit} gap={8}>
         <StyledInput type='text' name='username' id='' />
         <StyledInput type='password' name='password' id='' />
