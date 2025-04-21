@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <Text variant='heading-2'>
-        <Icon icon={Cat} size={32} /> ipLanse
+        <Icon icon={Cat} size={32} /> ipLance
       </Text>
       <AccountSwitcher />
     </HeaderWrapper>

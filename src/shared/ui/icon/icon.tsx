@@ -15,5 +15,14 @@ export const Icon: React.FC<CustomIconProps> = ({
   size = 16,
   ...props
 }) => {
-  return <IconComponent {...props} size={size} />;
+  return (
+    <IconComponent
+      {...props}
+      size={size}
+      style={{
+        minWidth: size,
+        minHeight: size,
+      }}
+    />
+  );
 };
