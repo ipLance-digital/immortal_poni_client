@@ -1,0 +1,5 @@
+#!/bin/sh
+. "$NVM_DIR/nvm.sh"
+nvm use 22
+
+npm run lint && npm run test
