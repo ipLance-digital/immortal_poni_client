@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 
-const API_URL = process.env.NEXT_APP_PUBLIC_API ?? 'http://localhost:8000';
+const API_URL = process.env.NEXT_APP_PUBLIC_API ?? 'http://localhost:80';
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
