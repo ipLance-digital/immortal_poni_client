@@ -48,7 +48,9 @@ export const AccountSwitcher = () => {
   if (!user) {
     return (
       <HStack gap={8}>
-        <Button size='xl'>Зарегистрироваться</Button>
+        <Button size='xl' onClick={() => router.push('/signup')}>
+          Зарегистрироваться
+        </Button>
         <Button
           variant='surface'
           size='xl'

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginWrapper = styled.div`
+export const SignupWrapper = styled.div`
   margin: 0 auto;
   padding: 12px;
   width: 100%;
