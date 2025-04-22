@@ -13,3 +13,9 @@ RUN npm ci
 # Копируем весь проект
 COPY . .
 RUN npm run build
+
+# ❗Команда запуска для прода
+CMD ["npm", "run", "start"]
+
+# Указываем порт (если у тебя Express или аналог)
+EXPOSE 3000
