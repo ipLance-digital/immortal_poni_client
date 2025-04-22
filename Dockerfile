@@ -4,18 +4,20 @@ FROM node:18-alpine
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и package-lock.json перед установкой зависимостей
-COPY package*.json ./
+# Копируем package.json и pnpm-lock.yaml перед установкой зависимостей
+COPY package.json pnpm-lock.yaml ./
 
-# Устанавливаем зависимости
-RUN npm ci
+# Устанавливаем зависимости с использованием pnpm
+RUN pnpm install --frozen-lockfile
 
 # Копируем весь проект
 COPY . .
-RUN npm run build
 
-# ❗Команда запуска для прода
-CMD ["npm", "run", "start"]
+# Собираем проект
+RUN pnpm run build
+
+# ❗Команда запуска для продакшн
+CMD ["pnpm", "run", "start"]
 
 # Указываем порт (если у тебя Express или аналог)
 EXPOSE 3000
