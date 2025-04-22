@@ -1,7 +1,7 @@
 import { queryOptions } from '@tanstack/react-query';
-import { z } from 'zod';
 import { LoginSchema, RegisterSchema, UserSchema } from '@/entities/user/model';
 import { apiFetch } from '@/shared/api/api-fetch';
+import { LoginDTO, SignupDTO } from './auth.types';
 
 export const Auth = {
   baseKey: 'auth',
@@ -17,7 +17,7 @@ export const Auth = {
     }),
 
   // ===== MUTATIONS =====
-  login: (credentials: z.infer<typeof LoginSchema>) =>
+  login: (credentials: LoginDTO) =>
     apiFetch('auth/login', {
       method: 'POST',
       body: credentials,
@@ -30,7 +30,7 @@ export const Auth = {
       method: 'POST',
     }),
 
-  register: (registerData: z.infer<typeof RegisterSchema>) =>
+  signup: (registerData: SignupDTO) =>
     apiFetch('auth/register', {
       method: 'POST',
       body: registerData,

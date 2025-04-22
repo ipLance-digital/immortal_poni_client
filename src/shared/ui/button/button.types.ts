@@ -13,7 +13,7 @@ export interface ButtonVariantProps {
 
 export type ButtonProps = HTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
-  loading?: boolean;
+  pending?: boolean;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
 } & ButtonVariantProps &

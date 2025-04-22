@@ -7,4 +7,8 @@ export const API = {
   auth: Auth,
 };
 
-export type { UserDTO, LoginDTO, RegisterDTO } from './auth/auth.types';
+export type {
+  UserDTO,
+  LoginDTO,
+  SignupDTO as RegisterDTO,
+} from './auth/auth.types';
