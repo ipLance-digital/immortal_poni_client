@@ -8,13 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 
 # Устанавливаем зависимости
-RUN npm install
+RUN npm ci
 
 # Копируем весь проект
 COPY . .
-
-# Указываем порты для Next.js и Storybook
-EXPOSE 3000 6006
-
-# Команда по умолчанию для запуска контейнера
-CMD ["npm", "run", "dev"]
+RUN npm run build

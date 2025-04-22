@@ -1,24 +1,9 @@
 version: '3.3'
 
 services:
-  app:
-    build: .
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - '3000:3000'
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: ['npm', 'run', 'dev']
-
-  storybook:
-    build: .
-    ports:
-      - '6006:6006'
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: ['npm', 'run', 'sb']
