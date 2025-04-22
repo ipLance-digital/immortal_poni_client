@@ -1,5 +1,9 @@
 version: '3.3'
 
+networks:
+  ip-lance-net:
+    external: true
+
 services:
   frontend:
     container_name: frontend
@@ -8,4 +12,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - '3000:3000'
+    environment:
+      NEXT_APP_PUBLIC_API: http://web:8000
+    depends_on:
+      - web
+    networks:
+      - ip-lance-net
     restart: always
