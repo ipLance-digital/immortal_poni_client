@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next';
 
-const API_URL = process.env.NEXT_APP_PUBLIC_API ?? 'http://web:8000';
+const API_URL = process.env.NEXT_APP_PUBLIC_API ?? 'http://ipWeb:8000';
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
@@ -14,9 +14,6 @@ const nextConfig: NextConfig = {
         destination: `${API_URL}/api/v1/:path*`,
       },
     ];
-  },
-  images: {
-    domains: ['plus.unsplash.com'],
   },
 };
 

@@ -7,11 +7,11 @@ services:
     ports:
       - '3000:3000'
     environment:
-      NEXT_APP_PUBLIC_API: http://web:8000
+      NEXT_APP_PUBLIC_API: http://ipWeb:8000
     networks:
       - ip-lance-net
     restart: always
 
 networks:
   ip-lance-net:
-    external: true
+    driver: bridge
