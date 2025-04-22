@@ -2,6 +2,39 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.2.23 (2025-04-22)
+
+### 0.2.22 (2025-04-22)
+
+### 0.2.21 (2025-04-22)
+
+### 0.2.20 (2025-04-22)
+
+### 0.2.19 (2025-04-22)
+
+### 0.2.18 (2025-04-22)
+
+### 0.2.17 (2025-04-22)
+
+### 0.2.16 (2025-04-22)
+
+### 0.2.15 (2025-04-22)
+
+### 0.2.14 (2025-04-22)
+
+### 0.2.13 (2025-04-22)
+
+
+### Bug Fixes
+
+* docker prod ([db3e628](https://github.com/ipLance-digital/immortal_poni_client/commit/db3e6281cc62c88f7e7259ddf40e6946c87ce179))
+
+### 0.2.12 (2025-04-22)
+
+### 0.2.11 (2025-04-22)
+
+### 0.2.10 (2025-04-22)
+
 ### 0.2.9 (2025-04-22)
 
 ### 0.2.8 (2025-04-21)

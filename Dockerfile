@@ -4,17 +4,23 @@ FROM node:18-alpine
 # Устанавливаем рабочую директорию
 WORKDIR /app
 
-# Копируем package.json и package-lock.json перед установкой зависимостей
-COPY package*.json ./
+# Устанавливаем pnpm
+RUN npm install -g pnpm
 
-# Устанавливаем зависимости
-RUN npm install
+# Копируем package.json и pnpm-lock.yaml перед установкой зависимостей
+COPY package.json pnpm-lock.yaml ./
+
+# Устанавливаем зависимости с использованием pnpm
+RUN pnpm install --frozen-lockfile
 
 # Копируем весь проект
 COPY . .
 
-# Указываем порты для Next.js и Storybook
-EXPOSE 3000 6006
+# Собираем проект
+RUN pnpm run build
 
-# Команда по умолчанию для запуска контейнера
-CMD ["npm", "run", "dev"]
+# ❗Команда запуска для продакшн
+CMD ["pnpm", "run", "start"]
+
+# Указываем порт (если у тебя Express или аналог)
+EXPOSE 3000

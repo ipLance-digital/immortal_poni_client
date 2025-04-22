@@ -1,6 +1,6 @@
 {
   "name": "iplance",
-  "version": "0.2.9",
+  "version": "0.2.23",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -58,7 +58,7 @@
     "vitest": "^3.0.8"
   },
   "engines": {
-    "node": "22"
+    "node": "22.14.0"
   },
   "eslintConfig": {
     "extends": [

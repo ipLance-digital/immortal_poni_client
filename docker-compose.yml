@@ -1,24 +1,17 @@
-version: '3.3'
-
 services:
-  app:
-    build: .
+  frontend:
+    container_name: ipFrontend
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - '3000:3000'
-    volumes:
-      - .:/app
-      - /app/node_modules
     environment:
-      - NODE_ENV=development
-    command: ['npm', 'run', 'dev']
+      NEXT_APP_PUBLIC_API: http://web:8000
+    networks:
+      - immortal_poni_ip-lance-net
+    restart: always
 
-  storybook:
-    build: .
-    ports:
-      - '6006:6006'
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    command: ['npm', 'run', 'sb']
+networks:
+  immortal_poni_ip-lance-net:
+    external: true
