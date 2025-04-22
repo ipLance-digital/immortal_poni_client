@@ -2,26 +2,39 @@ name: Release
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
-    environment: production
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # обязательно! semantic-release требует все теги
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: npm ci
-      - run: |
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set Git user
+        run: |
           git config user.name "silchenkoofficial"
           git config user.email "nikita.silchenko.work@yandex.ru"
-      - run: npm run release
-      - run: |
-          git push --follow-tags https://x-access-token:${{ secrets.GH_PAT }}@github.com/ipLance-digital/immortal_poni_client.git HEAD:main
+
+      - name: Run semantic-release
         env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
           GIT_AUTHOR_NAME: Никита
           GIT_AUTHOR_EMAIL: nikita.silchenko.work@yandex.ru
           GIT_COMMITTER_NAME: Никита
           GIT_COMMITTER_EMAIL: nikita.silchenko.work@yandex.ru
+        run: npx semantic-release

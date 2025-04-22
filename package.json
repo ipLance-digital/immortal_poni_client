@@ -30,6 +30,9 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.5",
     "@eslint/eslintrc": "^3",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.1",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-onboarding": "^8.6.4",
     "@storybook/blocks": "^8.6.4",
@@ -52,7 +55,7 @@
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "playwright": "^1.51.0",
-    "standard-version": "^9.5.0",
+    "semantic-release": "^24.2.3",
     "storybook": "^8.6.4",
     "typescript": "^5",
     "vitest": "^3.0.8"
