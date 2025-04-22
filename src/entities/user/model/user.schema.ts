@@ -17,12 +17,6 @@ export const RegisterSchema = UserSchema.pick({
   username: true,
   email: true,
   phone: true,
-})
-  .extend({
-    password: z.string().min(8),
-    passwordConfirm: z.string().min(8),
-  })
-  .refine((data) => data.password === data.passwordConfirm, {
-    message: 'Пароли не совпадают',
-    path: ['passwordConfirm'],
-  });
+}).extend({
+  password: z.string().min(8),
+});

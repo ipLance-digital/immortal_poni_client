@@ -9,7 +9,7 @@ import { Loader } from '../loader';
 const ANIMATION_DURATION = 0.2;
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, loading, type = 'button', ...props }, ref) => {
+  ({ children, pending: loading, type = 'button', ...props }, ref) => {
     return (
       <StyledButton
         ref={ref}

@@ -24,10 +24,16 @@ export const AuthForm = () => {
     <VStack as={LoginWrapper} gap={16}>
       <Text variant='heading-2'>Вход</Text>
       <VStack as={FormWrapper} onSubmit={handleSubmit} gap={8}>
-        <StyledInput type='text' name='username' id='' />
-        <StyledInput type='password' name='password' id='' />
+        <VStack gap={4}>
+          <label htmlFor='username'>Юзернейм</label>
+          <StyledInput type='text' name='username' id='username' required />
+        </VStack>
+        <VStack gap={4}>
+          <label htmlFor='password'>Пароль</label>
+          <StyledInput type='password' name='password' id='password' required />
+        </VStack>
 
-        <Button type={'submit'} size='lg' loading={loginPending} fullWidth>
+        <Button type={'submit'} size='xl' pending={loginPending} fullWidth>
           Войти
         </Button>
       </VStack>

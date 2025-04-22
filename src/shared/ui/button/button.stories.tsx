@@ -31,7 +31,7 @@ const meta: Meta<typeof Button> = {
         defaultValue: { summary: 'false' },
       },
     },
-    loading: {
+    pending: {
       control: { type: 'boolean' },
       description: 'Статус загрузки',
       table: {
@@ -63,6 +63,6 @@ export const Default: Story = {
       }, 2000);
     };
 
-    return <Button {...args} loading={loading} onClick={handleClick} />;
+    return <Button {...args} pending={loading} onClick={handleClick} />;
   },
 };
