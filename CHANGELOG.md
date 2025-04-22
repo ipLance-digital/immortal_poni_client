@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/ipLance-digital/immortal_poni_client/compare/v0.2.24...v0.3.0) (2025-04-22)
+
+
+### Features
+
+* регистрация пользователя ([c6253d8](https://github.com/ipLance-digital/immortal_poni_client/commit/c6253d8d6e33447635b71241ba3316e668bd543a))
+
 # Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
