@@ -73,4 +73,4 @@ export const LIGHT_THEME = {
     100: '#F2E7FE',
     50: '#F9F4FE',
   },
-} as const;
+};

@@ -73,4 +73,4 @@ export const DARK_THEME = {
     100: '#381C58',
     50: '#2A1741',
   },
-} as const;
+};
