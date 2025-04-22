@@ -9,9 +9,9 @@ services:
     environment:
       NEXT_APP_PUBLIC_API: http://web:8000
     networks:
-      - ip-lance-net
+      - immortal_poni_ip-lance-net
     restart: always
 
 networks:
-  ip-lance-net:
+  immortal_poni_ip-lance-net:
     external: true
