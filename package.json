@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx --cache",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:staged": "prettier --write $(git diff --name-only --diff-filter=ACMRT | grep -E '\\.(js|ts|tsx|json|css|scss|md)$')"
   },
   "private": true,
   "dependencies": {
