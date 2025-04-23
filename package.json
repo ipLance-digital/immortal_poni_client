@@ -2,7 +2,10 @@
   "name": "@ip-lance/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx --cache",
+    "format": "prettier --write ."
+  },
   "private": true,
   "dependencies": {
     "next": "~15.2.4",
@@ -37,6 +40,7 @@
     "eslint-plugin-playwright": "^1.6.2",
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "5.0.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "nx": "20.8.0",
     "postcss": "8.4.38",
     "prettier": "^2.6.2",

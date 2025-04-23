@@ -1,42 +1,26 @@
-import nx from '@nx/eslint-plugin';
+import js from '@eslint/js';
+import prettier from 'eslint-config-prettier';
+import * as tseslint from 'typescript-eslint';
+import unusedImports from 'eslint-plugin-unused-imports';
 
-export default [
-  ...nx.configs['flat/base'],
-  ...nx.configs['flat/typescript'],
-  ...nx.configs['flat/javascript'],
+const config = [
   {
-    ignores: ['**/dist'],
+    ignores: ['**/.next/**', '**/node_modules/**', '**/.nx/**'],
   },
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
+    files: ['**/*.ts', '**/*.tsx'],
+    plugins: {
+      'unused-imports': unusedImports,
+    },
     rules: {
-      '@nx/enforce-module-boundaries': [
-        'error',
-        {
-          enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?js$'],
-          depConstraints: [
-            {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
-            },
-          ],
-        },
-      ],
+      'unused-imports/no-unused-imports': 'error',
+      'no-console': 'warn',
+      'no-debugger': 'error',
     },
   },
-  {
-    files: [
-      '**/*.ts',
-      '**/*.tsx',
-      '**/*.cts',
-      '**/*.mts',
-      '**/*.js',
-      '**/*.jsx',
-      '**/*.cjs',
-      '**/*.mjs',
-    ],
-    // Override or add rules here
-    rules: {},
-  },
+  prettier,
 ];
+
+export default config;
